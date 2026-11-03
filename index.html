@@ -69,7 +69,7 @@ body{
 }
 
 .slide-3 {
-  background-image: url('t3.jpeg');
+  background-image: url('t33.jpeg');
   animation-delay: 6s;
 }
 
@@ -79,12 +79,12 @@ body{
 }
 
 .slide-5 {
-  background-image: url('t5.jpeg');
+  background-image: url('Slide 4.jpeg');
   animation-delay: 12s;
 }
 
 .slide-6 {
-  background-image: url('t6.jpeg');
+  background-image: url('c1.jpeg');
   animation-delay: 15s;
 }
 
@@ -855,8 +855,7 @@ html {
     }
 }
 
-
-/*memory*/
+/*gallary*/
 /* Memories Gallery Section */
 .memories-section {
   background-color: #000000;
@@ -868,6 +867,39 @@ html {
 .memories-container {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+/* Filter Tab Buttons Style */
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 10px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+.tab-btn.active {
+  background: #ffd700;
+  color: #000000;
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
 }
 
 /* Gallery Grid Layout (PC Setup) */
@@ -885,7 +917,8 @@ html {
   border: 1px solid rgba(212, 175, 55, 0.3);
   height: 240px;
   background: #111111;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
 }
 
 /* First Photo: Featured Large Box */
@@ -932,6 +965,72 @@ html {
   opacity: 1;
 }
 
+/* Lightbox Modal Styles */
+.image-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.image-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.image-modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #ffd700;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.modal-close:hover {
+  color: #ffffff;
+  transform: scale(1.15);
+}
+
+.modal-caption {
+  margin-top: 14px;
+  color: #ffd700;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
 /* Mobile & Tablet Responsiveness */
 @media (max-width: 768px) {
   .memories-section {
@@ -948,7 +1047,6 @@ html {
     border-radius: 10px;
   }
 
-  /* Mobile එකේදී ප්‍රධාන Photo එක උඩින්ම පළල්ව පෙනෙන පරිදි */
   .gallery-item.item-large {
     grid-column: span 2;
     grid-row: span 1;
@@ -956,9 +1054,30 @@ html {
   }
 
   .gallery-overlay {
-    opacity: 1; /* Touch screens සඳහා නිතරම text එක පෙනෙන පරිදි */
+    opacity: 1;
     font-size: 0.78rem;
     padding: 10px;
+  }
+
+  .tab-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  .modal-close {
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    max-height: 75vh;
+  }
+
+  .modal-caption {
+    font-size: 0.95rem;
+    padding: 0 15px;
   }
 }
 
@@ -1509,6 +1628,49 @@ html {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
+/* Language Switcher Buttons Style */
+.lang-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.lang-btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 6px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background-color: #e2e8f0;
+}
+
+.lang-btn.active {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/* Language Content Toggle */
+.lang-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lang-content.active {
+    display: block;
+    opacity: 1;
+}
+
 .about-badge {
     display: inline-block;
     background-color: #eff6ff;
@@ -1522,19 +1684,12 @@ html {
     margin-bottom: 12px;
 }
 
-.about-title {
-    font-size: 1.8rem;
-    color: #0f172a;
-    font-weight: 800;
-    margin-bottom: 15px;
-}
-
 .about-desc {
     font-size: 0.98rem;
     color: #475569;
     line-height: 1.7;
     max-width: 750px;
-    margin: 0 auto 30px auto;
+    margin: 0 auto 25px auto;
 }
 
 /* Audio Wrapper Inside About Card */
@@ -1577,12 +1732,13 @@ html {
         padding: 25px 15px;
     }
 
-    .about-title {
-        font-size: 1.5rem;
-    }
-
     .audio-player-wrapper {
         padding: 15px 10px;
+    }
+
+    .lang-btn {
+        padding: 5px 14px;
+        font-size: 0.8rem;
     }
 }
 
@@ -1947,7 +2103,7 @@ html {
       </div>
 
       <h1 class="main-title" data-aos="fade-up" data-aos-duration="1500">
-        <span class="orange-text" > සුභාවී </span> Education
+        <span class="orange-text" style="font-style: italic;" > සුභාවි </span> Education
       </h1>
 
       <p class="description" data-aos="fade-up" data-aos-duration="1800">
@@ -1965,31 +2121,49 @@ html {
 
 
   <!--introdus us-->
-<!-- About Us & Audio Section (White Theme) -->
 <section class="about-section">
     <div class="about-card">
-        <span class="about-badge reveal scroll-anim fade-up">අපගේ හැඳින්වීම</span>
-        <h2 class="about-title reveal scroll-anim fade-up">අපි ගැන</h2>
-        <p class="about-desc reveal scroll-anim fade-up">
-            දිවයිනේ දක්ෂම සහ පළපුරුදු ගුරු මණ්ඩලයක මගපෙන්වීම යටතේ, සිසුන්ට උසස් ප්‍රතිඵල ලබා දීමේ අරමුණින් ආරම්භ කරන ලද අප ආයතනය, සෑම දරුවෙකුටම පුද්ගල අවධානය ලබා දෙමින් නිවැරදි මඟපෙන්වීම ලබා දෙයි. අපගේ ඉගැන්වීම් රටාව සහ විශේෂ වැඩසටහන් පිළිබඳව වැඩිදුර විස්තර පහත හඬ පටයෙන් ශ්‍රවණය කරන්න.
-        </p>
+        
+        <!-- Language Switcher Tabs -->
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLanguage('si')">සිංහල</button>
+            <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+        </div>
 
-        <!-- Standard Audio Player Component -->
-        <div class="audio-player-wrapper reveal">
+        <!-- Sinhala Content (Default) -->
+        <div id="content-si" class="lang-content active">
+            <span class="about-badge">හැඳින්වීම</span>
+            <p class="about-desc">
+                දිවයිනේ දක්ෂම සහ පළපුරුදු ගුරු මණ්ඩලයක මගපෙන්වීම යටතේ, සිසුන්ට උසස් ප්‍රතිඵල ලබා දීමේ අරමුණින් ආරම්භ කරන ලද අප ආයතනය, සෑම දරුවෙකුටම පුද්ගල අවධානය ලබා දෙමින් නිවැරදි මඟපෙන්වීම ලබා දෙයි. අපගේ ඉගැන්වීම් රටාව සහ විශේෂ වැඩසටහන් පිළිබඳව වැඩිදුර විස්තර පහත හඬ පටයෙන් ශ්‍රවණය කරන්න.
+            </p>
             <div class="audio-title-box">
-                <i class="fas fa-volume-high scroll-anim fade-up"></i>
-                <span>අපගේ හඬ පටය (Audio Introduction)</span>
+                <i class="fas fa-volume-high"></i>
+                <span>හඬ පටය (Audio Introduction)</span>
             </div>
-            
-            <audio controls class="custom-audio-player scroll-anim fade-up">
+        </div>
+
+        <!-- English Content -->
+        <div id="content-en" class="lang-content">
+            <span class="about-badge">Introduction</span>
+            <p class="about-desc">
+                Established with the goal of guiding students to achieve top results under the guidance of the island's most talented and experienced teaching staff, our institute provides personalized attention and proper guidance to every child. Listen to the audio below for more details about our teaching methods and special programs.
+            </p>
+            <div class="audio-title-box">
+                <i class="fas fa-volume-high"></i>
+                <span>Audio Introduction</span>
+            </div>
+        </div>
+
+        <!-- Standard Audio Player Component (Common for both) -->
+        <div class="audio-player-wrapper">
+            <audio controls class="custom-audio-player">
                 <source src="song.mp3" type="audio/mpeg">
                 ඔබගේ Browser එක මගින් Audio එක Support කරනු නොලැබේ.
             </audio>
         </div>
+        
     </div>
 </section>
-
-
 
 
 
@@ -1997,118 +2171,101 @@ html {
 <section class="memories-section">
   <div class="memories-container">
     
-    <span class="sub-tag">අපේ ඇදුරු මඩුල්ල </span>
-    <h2 class="section-title">හොදම ගුරුවරු එකට ඉන්න ලංකාවේ එකම තැන </h2>
+    <span class="sub-tag">අපේ ඇදුරු මඩුල්ල</span>
+    <h2 class="section-title">හොදම ගුරුවරු එකට ඉන්න ලංකාවේ එකම තැන</h2>
+
+    <!-- Medium Filter Tabs -->
+    <div class="gallery-tabs">
+      <button class="tab-btn active" data-filter="all">සියලුම ගුරුවරු (All)</button>
+      <button class="tab-btn" data-filter="sinhala">සිංහල මාධ්‍ය (Sinhala Medium)</button>
+      <button class="tab-btn" data-filter="english">ඉංග්‍රීසි මාධ්‍ය (English Medium)</button>
+    </div>
 
     <div class="gallery-grid">
       
-      <!-- Photo 1 (Main Featured Photo) -->
-      <div class="gallery-item item-large scroll-anim fade-up">
-        <img src="21.jpeg" alt="Students Memory 1">
+      <!-- Photo 2: Sinhala Medium (Science Grade 6-11) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala" data-delay="100">
+        <img src="12.jpeg" alt="SCIENCE GRADE 6-11">
         <div class="gallery-overlay">
-          <span> </span>
+          <span>SCIENCE GRADE 6-11 (සිංහල මාධ්‍ය)</span>
         </div>
       </div>
 
-      <!-- Photo 2 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="100">
-        <img src="12.jpeg" alt="Students Memory 2">
+      <!-- Photo 3: Sinhala Medium (Science Grade 6-11) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala" data-delay="200">
+        <img src="13.jpeg" alt="SCIENCE GRADE 6-11">
         <div class="gallery-overlay">
-          <span>SCIENCE GRADE 6-11</span>
+          <span>SCIENCE GRADE 6-11 (සිංහල මාධ්‍ය)</span>
         </div>
       </div>
 
-      <!-- Photo 3 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="200">
-        <img src="13.jpeg" alt="Students Memory 3">
-        <div class="gallery-overlay">
-          <span>SCIENCE GRADE 6-11</span>
-        </div>
-      </div>
-
-      <!-- Photo 4 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="300">
-        <img src="14.jpeg" alt="Students Memory 4">
+      <!-- Photo 4: Sinhala Medium (English Grade 1-8) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala" data-delay="300">
+        <img src="14.jpeg" alt="ENGLISH GRADE 1-8">
         <div class="gallery-overlay">
           <span>ENGLISH GRADE 1-8</span>
         </div>
       </div>
 
-      <!-- Photo 5 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="15.jpeg" alt="Students Memory 5">
+      <!-- Photo 5: Sinhala Medium (ICT) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala english" data-delay="400">
+        <img src="15.jpeg" alt="ICT GRADE 6-11">
         <div class="gallery-overlay">
           <span>ICT GRADE 6-11</span>
         </div>
       </div>
 
-      <!-- Photo 6 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="16.jpeg" alt="Students Memory 5">
+      <!-- Photo 6: Sinhala Medium (History) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala" data-delay="400">
+        <img src="16.jpeg" alt="HISTORY GRADE 6-11">
         <div class="gallery-overlay">
           <span>HISTORY GRADE 6-11</span>
         </div>
       </div>
 
-      <!-- Photo 7 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="17.jpeg" alt="Students Memory 5">
+      <!-- Photo 7: Sinhala Medium (Maths) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala english" data-delay="400">
+        <img src="17.jpeg" alt="MATHEMATICS GRADE 6-11">
         <div class="gallery-overlay">
           <span>MATHEMATICS GRADE 6-11</span>
         </div>
       </div>
 
-      <!-- Photo 8 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="18.jpeg" alt="Students Memory 5">
+      <!-- Photo 8: Sinhala Medium (Scholarship) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala" data-delay="400">
+        <img src="18.jpeg" alt="SCHOLARSHIP GRADE 3/4/5">
         <div class="gallery-overlay">
           <span>SCHOLARSHIP GRADE 3/4/5</span>
         </div>
       </div>
 
-      <!-- Photo 9 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="19.jpeg" alt="Students Memory 5">
+      <!-- Photo 9: English Medium (Science English Medium Grade 10) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="english" data-delay="400">
+        <img src="19.jpeg" alt="SCIENCE ENGLISH MEDIUM GRADE 10">
         <div class="gallery-overlay">
           <span>SCIENCE ENGLISH MEDIUM GRADE 10</span>
         </div>
       </div>
 
-      <!-- Photo 10 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="21.jpeg" alt="Students Memory 5">
-        <div class="gallery-overlay">
-          <span>ENGLISH GRADE 1-11</span>
-        </div>
-      </div>
-
-      <!-- Photo 11 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="22.jpeg" alt="Students Memory 5">
+      <!-- Photo 11: Sinhala Medium (Commerce) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala" data-delay="400">
+        <img src="22.jpeg" alt="COMMERCE GRADE 10-11">
         <div class="gallery-overlay">
           <span>COMMERCE GRADE 10-11</span>
         </div>
       </div>
 
-      <!-- Photo 12 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="23.jpeg" alt="Students Memory 5">
-        <div class="gallery-overlay">
-          <span>ICT & ENGLISH</span>
-        </div>
-      </div>
-
-      <!-- Photo 13 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="24.jpeg" alt="Students Memory 5">
+      <!-- Photo 13: Sinhala Medium (Scholarship) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala" data-delay="400">
+        <img src="24.jpeg" alt="SCHOLARSHIP GRADE 3/4/5">
         <div class="gallery-overlay">
           <span>SCHOLARSHIP GRADE 3/4/5</span>
         </div>
       </div>
 
-      <!-- Photo 14 -->
-      <div class="gallery-item scroll-anim fade-up" data-delay="400">
-        <img src="11.jpeg" alt="Students Memory 5">
+      <!-- Photo 14: Other / Language (Japan) -->
+      <div class="gallery-item scroll-anim fade-up" data-category="sinhala" data-delay="400">
+        <img src="11.jpeg" alt="JAPAN LANGUAGE">
         <div class="gallery-overlay">
           <span>JAPAN LANGUAGE</span>
         </div>
@@ -2116,9 +2273,16 @@ html {
     </div>
 
   </div>
-
-
 </section>
+
+<!-- Image Lightbox Popup Modal -->
+<div id="imageModal" class="image-modal">
+  <span class="modal-close">&times;</span>
+  <img class="modal-content" id="modalImg" alt="Enlarged View">
+  <div id="modalCaption" class="modal-caption"></div>
+</div>
+
+
 
 
 <!-- About & Notice Section with Background & Slideshow -->
@@ -2129,7 +2293,7 @@ html {
       <!-- Institute Header -->
       <div class="ans-header">
         
-        <h2> සුභාවී උසස් අධ්‍යාපන ආයතනය - කොළඹ 15</h2>
+        <h2> සුභාවි උසස් අධ්‍යාපන ආයතනය - කොළඹ 15</h2>
         <p class="ans-sub">Subhavi Higher Education Institute</p>
         <p class="ans-welcome">ආදරණීය දෙමව්පියනි / දුවේ / පුතේ, අනාගත දැක්මකින් යුත් නවීනතම අධ්‍යාපන අත්දැකීමක් කරා 2027 දී ඔබව පිළිගැනීමට සුභාවී අධ්‍යාපන ආයතනය අපි සූදානම්! </p>
       </div>
@@ -2183,7 +2347,7 @@ html {
 
 
 <!-- Subhavi WhatsApp Groups Section -->
-<section class="subhavi-wp-section">
+<section class="subhavi-wp-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(bgblack.jpg);">
   <div class="swp-container">
     <div class="swp-header scroll-anim fade-up">
       <span class="swp-badge">නිල දැනුම්දීමයි</span>
@@ -2481,6 +2645,94 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+
+
+//image popup
+document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Filter Tabs Logic ---
+    const filterButtons = document.querySelectorAll('.tab-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        galleryItems.forEach(item => {
+          // Get category or empty string if not defined
+          const itemCategory = item.getAttribute('data-category') || '';
+          
+          // Check if filter is 'all' or if the category includes the filter value
+          if (filterValue === 'all' || itemCategory.includes(filterValue)) {
+            item.style.display = 'block';
+            setTimeout(() => item.style.opacity = '1', 50);
+          } else {
+            item.style.opacity = '0';
+            setTimeout(() => item.style.display = 'none', 300);
+          }
+        });
+      });
+    });
+
+    // --- 2. Lightbox Popup Logic ---
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeBtn = document.querySelector('.modal-close');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const overlayText = item.querySelector('.gallery-overlay span');
+        
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalCaption.textContent = overlayText ? overlayText.textContent : '';
+        document.body.style.overflow = 'hidden'; 
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+});
+
+
+
+//text si swich introduc us
+function switchLanguage(lang) {
+        // Remove active class from buttons & content
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.lang-content').forEach(content => content.classList.remove('active'));
+
+        // Add active class to selected language
+        if (lang === 'si') {
+            document.querySelector('.lang-btn:nth-child(1)').classList.add('active');
+            document.getElementById('content-si').classList.add('active');
+        } else {
+            document.querySelector('.lang-btn:nth-child(2)').classList.add('active');
+            document.getElementById('content-en').classList.add('active');
+        }
+    }
 
 </script>
 
